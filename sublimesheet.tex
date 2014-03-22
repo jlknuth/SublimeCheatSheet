@@ -1,0 +1,522 @@
+\documentclass[10pt,landscape]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc} % required for Mac command key rendering
+\usepackage[os=mac, mackeys=symbols]{menukeys}
+\usepackage[thinlines]{easytable}
+\usepackage{array}
+\usepackage{amsmath, amscd, amsthm, amssymb, mathrsfs,amsfonts}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{multirow} 
+
+% To make this come out properly in landscape mode, do one of the following
+% 1.
+%  pdflatex latexsheet.tex
+%
+% 2.
+%  latex latexsheet.tex
+%  dvips -P pdf  -t landscape latexsheet.dvi
+%  ps2pdf latexsheet.ps
+
+
+% If you're reading this, be prepared for confusion.  Making this was
+% a learning experience for me, and it shows.  Much of the placement
+% was hacked in; if you make it better, let me know...
+
+
+% 2008-04
+% Changed page margin code to use the geometry package. Also added code for
+% conditional page margins, depending on paper size. Thanks to Uwe Ziegenhagen
+% for the suggestions.
+
+% 2006-08
+% Made changes based on suggestions from Gene Cooperman. <gene at ccs.neu.edu>
+
+
+% To Do:
+% \listoffigures \listoftables
+% \setcounter{secnumdepth}{0}
+
+
+% This sets page margins to .5 inch if using letter paper, and to 1cm
+% if using A4 paper. (This probably isn't strictly necessary.)
+% If using another size paper, use default 1cm margins.
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+	{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	}
+
+% Turn off header and footer
+\pagestyle{empty}
+ 
+\newcommand{\nl}{\\[.3ex]}
+\newcommand{\nlt}{\\[1.2ex]}
+\newcommand{\ct}{\rotatebox[origin=c]{180}{$\Lsh$}\,}
+\newcommand{\hid}{\hangindent=0.3cm}
+\newcommand{\cst}{$\stackrel{1}{}$}
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+% Define BibTeX command
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+\newmenucolortheme{mycolors}{named}{white}{white}{black}
+\changemenucolor{gray}{bg}{named}{white}
+\changemenucolor{gray}{br}{named}{white}
+
+
+% -----------------------------------------------------------------------
+
+\begin{document}
+
+\raggedright
+\footnotesize
+\begin{multicols*}{3}
+
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\newlength{\MyKeyLen}
+\settowidth{\MyKeyLen}{\keys{\cmd + \Alt + \space +\space  +\space}}
+\settowidth{\MyKeyLen}{2000000000000000000}
+
+
+\begin{center}
+     \Large{\textbf{Sublime Text Cheat Sheet}} \\
+\end{center}
+
+\section{Built-In}
+% \begin{tabular}{@{}p{\the\MyLen}%
+%                 @{}p{\linewidth-\the\MyLen}@{}}
+\subsection{General}
+\begin{tabular}{@{}p{\linewidth-\the\MyKeyLen} @{}p{\the\MyKeyLen}@{}}
+    Command Palette & \keys{\cmd + \shift + P} \nl
+    Select Project & \keys{\ctrl + \cmd + P} \nl
+    Goto File & \keys{\cmd+ P} \nl
+    Goto Definition/Section & \keys{\cmd+ P} \keys{@} /\\
+    & \keys{\cmd+ R} \nl
+    Goto Line & \keys{\cmd+ P} \keys{:} \nl  
+    Move Line Up/Down & \keys{\ctrl + \cmd + \arrowkeyup}/\keys{\arrowkeydown} \nl  
+    Join Lines & \keys{\cmd + J} \nl
+    Auto Complete & \keys{\ctrl + Space } \nl
+    Distraction Free Mode & \keys{\cmd + \ctrl + \shift + F} \nl
+    Wrap Selection & \keys{\cmd + \Alt + Q} \nl
+\end{tabular}
+
+\subsection{Splits/Panes}
+\begin{tabular}{@{}p{\linewidth-\the\MyKeyLen} @{}p{\the\MyKeyLen}@{}}
+Set Number of Pains (Vertical) & \keys{\cmd + \Alt + \#} \nl
+Set Number of Pains (Horizontal) & \keys{\cmd + \Alt + \shift + \#} \nl
+Focus Group & \keys{\ctrl + \#} \nl
+Move File to Group & \keys{\ctrl + \shift + \#} \nl
+\end{tabular}
+
+\subsection{Search}
+\begin{tabular}{@{}p{\linewidth-\the\MyKeyLen} @{}p{\the\MyKeyLen}@{}}
+Search in file & \keys{\cmd + F} \nl
+Search in project & \keys{\cmd + \shift + F} \nl
+Search and replace & \keys{\cmd + \Alt + F} \nl
+\end{tabular}
+
+\subsection{Multi-Select}
+\begin{tabular}{@{}p{\linewidth-\the\MyKeyLen} @{}p{\the\MyKeyLen}@{}}
+Add New Cursor & \keys{\cmd + Click} \nl
+Add All Occurrences & \keys{\ctrl + \cmd + G} \nl
+Add Next Occurrence & \keys{\cmd + D} \nl
+Split Selection into Lines & \keys{\cmd + \shift + L} \nl
+Undo Last Selection & \keys{\cmd +  U} \nl
+\end{tabular}
+Vintage Mode: \nl 
+\begin{tabular}{p{\linewidth-\the\MyKeyLen} @{}p{\the\MyKeyLen}}
+    enter visual mode & \keys{v}/\keys{v} \nl
+    select lines & \keys{hjkl}/movement \nl
+    split inot lines & \keys{\cmd + \shift + l} \nl
+    exit visual mode & \keys{v} \nl
+\end{tabular}
+\begin{tabular}{l}
+you should now be in command mode with multiple cursors 
+\end{tabular}
+
+\section{Python-Jedi}
+\begin{tabular}{@{}p{\linewidth-\the\MyKeyLen} @{}p{\the\MyKeyLen}@{}}
+    Goto Definition & \keys{\ctrl + \shift + G} \nl
+    Find Usages & \keys{\Alt + \shift + F} \nl
+\end{tabular}
+
+\section{Vintage Mode}
+\subsection{General}
+\begin{tabular}{@{}p{\linewidth-\the\MyKeyLen} @{}p{\the\MyKeyLen}@{}}
+    Escape & \keys{\ctrl + [} \nl
+    Repeat Last Command & \keys{.} \nl
+    Redo & \keys{\ctrl + R} \nl
+\end{tabular}
+
+\subsection{Cursor Movement}
+\begin{tabular}{@{}p{\linewidth-\the\MyKeyLen} @{}p{\the\MyKeyLen}@{}}
+    Move Cursor & \keys{H J K L} \nl
+    Jump by Start of Words & \keys{w/W} \nl
+    Jump by End of Words & \keys{e/E} \nl
+    Jump Back by Words & \keys{b/B} \nl
+    Jump to Start of Line & \keys{0} \nl
+    Jump to First Non-Blank Char & $\;\,$\char`\^ \nl
+    Jump to End of Line & \keys{\$} \nl
+    Jump to Line \# & \keys{\#G} \nl
+    Jump to First Line & \keys{gg} \nl
+    Jump to Last Line & \keys{G} \nl
+    Jump to Matching Bracket & \keys{\%} \nl
+    Jump to Top of Screen & \keys{H} \nl
+    Jump to Middle of Screen & \keys{M} \nl
+    Jump to Bottom of Screen & \keys{L} \nl
+\end{tabular}
+
+\subsection{Errors}
+\begin{tabular}{@{}p{\linewidth-\the\MyKeyLen} @{}p{\the\MyKeyLen}@{}}
+    Jump to Next Spelling Error & \keys{] s} \nl
+    Jump to Previous Spelling Error & \keys{[ s} \nl
+    Jump to Next Linter Error\cst & \keys{] e} \nl
+    Jump to Previous Linter Error\cst & \keys{[ e} \nl
+\end{tabular}
+
+\subsection{Bookmarks}
+\begin{tabular}{@{}p{\linewidth-\the\MyKeyLen} @{}p{\the\MyKeyLen}@{}}
+    Create Bookmark & \keys{m [a,b,c]} \nl
+    Jump to Bookmark & \keys{` [a,b,c]} \nl
+    Jump to Beginning of Bookmarked Line & \keys{' [a,b,c]}
+\end{tabular}
+
+\subsection{Screen Movement}
+\begin{tabular}{@{}p{\linewidth-\the\MyKeyLen} @{}p{\the\MyKeyLen}@{}}
+    Center Cursor & \keys{\ctrl + L} \nl
+    Page Up & \keys{\ctrl + B} \nl
+    Page Down & \keys{\ctrl + F} \nl
+    Half Page Up & \keys{\ctrl + U} \nl
+    Half Page Down & \keys{\ctrl + D} \nl
+    Scroll Up One Line & \keys{\ctrl + E} \nl
+    Scroll Down One Line & \keys{\ctrl + Y} \nl
+\end{tabular}
+
+\subsection{Search}
+\begin{tabular}{@{}p{\linewidth-\the\MyKeyLen} @{}p{\the\MyKeyLen}@{}}
+    Search for Pattern & \keys{/pattern} \nl
+    Search Backward for Pattern & \keys{?pattern} \nl
+    Repeat Search in Same Direction & \keys{n} \nl
+    Repeat Search in Opposite Direction & \keys{N} \nl
+    Find Character Forward & \keys{f/t} \nl
+    Find Character Backward & \keys{F/T} \nl
+    Repeat Character Search  & \keys{;} \nl
+    Find Word Forward & \keys{*} \nl
+    Find Word Backward & \keys{\#} \nl
+\end{tabular}
+
+\subsection{Editing}
+\begin{tabular}{@{}p{\linewidth-\the\MyKeyLen} @{}p{\the\MyKeyLen}@{}}
+    Insert Mode & \keys{i} \nl
+    Insert Mode at Beginning of Line & \keys{I} \nl
+    Append After the Cursor & \keys{a} \nl
+    Append at the End of the Line & \keys{A} \nl
+    Blank Line Below Current Line & \keys{o} \nl
+    Blank Line Above Current Line & \keys{O} \nl
+    Replace a Single Character & \keys{r} \nl
+    Joint Lines & \keys{J} \nl
+    Change & \keys{cc} / \keys{c [Movement]} \nl
+    Substitute & \keys{s/S} \nl
+    Switch Case & \keys{~} \nl
+    Undo & \keys{u} \nl
+\end{tabular}
+
+\subsection{Cut/Past}
+\begin{tabular}{@{}p{\linewidth-\the\MyKeyLen} @{}p{\the\MyKeyLen}@{}}
+    Enter Visual Mode & \keys{v/V} \nl
+    Yank & \keys{y} \nl
+    Put & \keys{p} \nl
+    Delete & \keys{d} \nl
+    Cut & \keys{x/X} \nl
+    Put in/Get From Register [a,b,c] & \keys{" [a,b,c]}\nl
+\end{tabular}
+   
+\subsection{Command Palette}
+\begin{tabular}{@{}p{\linewidth-\the\MyKeyLen} @{}p{\the\MyKeyLen}@{}}
+    Bring up Command Palette & \keys{:} \nl
+    Save & \keys{:w} \nl
+    Quit\cst & \keys{:q} \nl
+    Reload & \keys{:e} \nl
+    Install Package & \keys{:install} \nl
+\end{tabular}
+
+
+\section{\LaTeX \quad (LaTeXTools)}
+\subsection{General}
+\begin{tabular}{@{}p{\linewidth-\the\MyKeyLen} @{}p{\the\MyKeyLen}@{}}
+    \multicolumn{2}{@{}l}{Multi-file Documents}  \nl 
+        \multicolumn{2}{c}{First Line = \texttt{\%!TEX root = <master file name>}} \nl
+    Save and Build & \keys{\cmd + B} \nl
+    Remove Temporary Files from Build & \keys{\cmd + L} \keys{delete} \nl
+    Inverse Search From pdf & \keys{\cmd + \shift + Click} \nl
+    Forward Search From tex to pdf & \keys{\cmd + L} \keys{j} \nl
+    Enable and Disable Focus to PDF & \keys{\cmd + L} \keys{t f}  \nl
+    Enable and Disable Forward Search on Build & \keys{\cmd + L} \keys{t s} \nl
+    Status of toggles & \keys{\cmd + L} \keys{t ?} \nl
+    Auto-complete \verb!\ref{!/\verb!\cite{! & \keys{\cmd + L} \keys{x} \nl
+\end{tabular}
+
+\begin{tabular}{@{}p{\linewidth-\the\MyKeyLen} @{}p{\the\MyKeyLen}@{}}
+    Turn word into command & \keys{\cmd + L} \keys{c} \nl
+    Turn word into environment & \keys{\cmd + L} \keys{e} \nl
+    Turn selection into body of command & \keys{\cmd + L} \keys{\cmd + C} \nl
+    Turn selection into body of environment & \keys{\cmd + L} \keys{\cmd + N} \nl
+    Turn selection into emphasis & \keys{\cmd + L} \keys{\cmd + E} \nl
+    Turn selection into bold & \keys{\cmd + L} \keys{\cmd + B} \nl
+    Turn selection into underlined & \keys{\cmd + L} \keys{\cmd + U} \nl
+\end{tabular}
+
+\subsection{Formatting}
+\begin{tabular}{@{}p{\linewidth-\the\MyKeyLen} @{}p{\the\MyKeyLen}@{}}
+    \verb!\textit! & it \nl
+    \verb!\textbf! & bf \nl
+    \verb!\emph! & em \nl
+    \verb!\texttt! & tt \nl
+    \verb!\underline! & un \nl
+    \verb!\bigskip! & bs \nl
+    \verb!\medskip! & ms \nl
+    \verb!\smallskip! & ss \nl
+\end{tabular}
+
+\subsection{Environments}
+\begin{tabular}{@{}p{\linewidth-\the\MyKeyLen} @{}p{\the\MyKeyLen}@{}}
+figure & bfigure \nl
+\verb!\[ \]! & beq \nl
+equation & beqn \nl
+gather/gather* & bgan/bga \nl
+align/align* & baln/bal \nl
+alignat/alignat* & baan/baa \nl
+flalign/flalign* & bfln/bfl \nl
+multiline/multiline* & bmln/bml\nl
+split & sp\nl
+itemize & bit \nl
+enumerate & ben\nl
+\verb!\item! & i\nl
+\end{tabular}
+
+\subsection{Math Mode}
+\subsubsection{Symbols}
+% \begin{tabular}{@{}l p{0.5\linewidth-0.5\the\MyKeyLen} @{}p{\the\MyKeyLen}@{}}
+\begin{tabular}{@{}p{0.7\linewidth - 0.7\MyKeyLen}  @{}p{0.3\linewidth-0.3\MyKeyLen} %
+                @{}p{\the\MyKeyLen}@{}}
+    \verb!\alpha! & $\alpha$ & a \nl
+    \verb!\beta! & $\beta$ & b  \nl
+    \verb!\gamma! & $\gamma$ & g  \nl
+    \verb!\delta! & $\delta$ & d  \nl
+    \ct \verb!\partial! & $\partial$ & \nl
+    \verb!\epsilon! & $\epsilon$ & e  \nl
+    \ct \verb!\varepsilon! & $\varepsilon$ &   \nl
+    \verb!\zeta! & $\zeta$ & z \nl
+    \verb!\eta! & $\eta$ & h \nl
+    \verb!\theta! & $\theta$ & q \nl
+    \ct \verb!\vartheta! & $\vartheta$ & \nl
+    \verb!\iota! & $\iota$ & i \nl
+    \verb!\kappa! & $\kappa$ & k \nl
+    \verb!\lambda! & $\lambda$ & l \nl
+    \verb!\mu! & $\mu$ & m \nl
+    \verb!\nu! & $\nu$ & n \nl
+    \verb!\xi! & $\xi$ & x \nl
+    \verb!\pi! & $\pi$ & p \nl
+    \verb!\rho! & $\rho$ & r \nl
+    \verb!\sigma! & $\sigma$ & s \nl
+    \verb!\tau! & $\tau$ & t \nl
+    \verb!\upsilon! & $\upsilon$ & u \nl
+    \verb!\phi! & $\phi$ & f \nl
+    \ct \verb!\varphi! & $\varphi$ &  \nl
+\end{tabular}
+
+\begin{tabular}{@{}p{0.7\linewidth - 0.7\MyKeyLen}  @{}p{0.3\linewidth-0.3\MyKeyLen} %
+                @{}p{\the\MyKeyLen}@{}}
+    \verb!\chi! & $\chi$ & c \nl
+    \verb!\psi! & $\psi$ & y \nl
+    \verb!\omega! & $\omega$ & w \nl
+    \verb!\digamma! & $\digamma$ & v \nlt
+\end{tabular}
+
+\begin{tabular}{@{}p{0.7\linewidth - 0.7\MyKeyLen}  @{}p{0.3\linewidth-0.3\MyKeyLen} %
+                @{}p{\the\MyKeyLen}@{}}
+\verb!\Gamma! & $\Gamma$ & G \nl
+\verb!\Delta! & $\Delta$ & D \nl
+\verb!\Theta! & $\Theta$ & Q \nl
+\verb!\Lambda! & $\Lambda$ & L \nl
+\verb!\Xi! & $\Xi$ & X \nl
+\verb!\Pi! & $\Pi$ & P \nl
+\verb!\Sigma! & $\Sigma$ & S \nl
+\verb!\Phi! & $\Phi$ & F \nl
+\verb!\Psi! & $\Psi$ & Y \nl
+\verb!\Omega! & $\Omega$ & W \nl
+\end{tabular}
+
+\begin{tabular}{@{}p{0.7\linewidth - 0.7\MyKeyLen}  @{}p{0.3\linewidth-0.3\MyKeyLen} %
+                @{}p{\the\MyKeyLen}@{}}
+    \verb!\emptyset! & $\emptyset$ & 0 \nl
+    \verb!\forall! & $\forall$ & V \nl
+    \verb!\exists! & $\exists$ & E \nl
+    \verb!\setminus! & $\setminus$ &  sm \nl
+    \verb!\ldots! & $\ldots$ &  ld \nl
+    \verb!\cdots! & $\cdots$ &  cd \nl
+    \ct \verb!\cdot! & $\cdot$ &  \nl
+    \verb!\langle! & $\langle$ &  la \nl
+    \verb!\rangle! & $\rangle$ &  ra \nl
+    \verb!\cup! & $\cup$ &  cu \nl
+    \verb!\cap! & $\cap$ &  ca \nl
+    \verb!\bigcup! & $\bigcup$ &  bcu \nl
+    \verb!\bigcap! & $\bigcap$ &  bca \nlt
+\end{tabular}
+
+\begin{tabular}{@{}p{0.7\linewidth - 0.7\MyKeyLen}  @{}p{0.3\linewidth-0.3\MyKeyLen} %
+                @{}p{\the\MyKeyLen}@{}}
+    \verb!\int! & $\int$ &  in \nl
+    \ct \verb!\infty! & $\infty$ &   \nl
+    \verb!\sum! & $\sum$ &  su \nl
+    \ct \verb!\sup! & $\sup$ &   \nl
+    \ct \verb!\succ! & $\succ$ &   \nl
+    \ct \verb!\succeq! & $\succeq$ &   \nl
+    \ct \verb!\succcurlyeq! & $\succcurlyeq$ &   \nl
+    \verb!\sum_{}^{}!\cst & $\sum_{i=1}^{n}$ &  M \nl
+    \verb!\quad! & $\underline{\quad}$ &  qd \nl
+    \verb!\qquad! & $\underline{\qquad}$ &  qqd \nl
+\end{tabular}
+
+\begin{tabular}{@{}p{0.7\linewidth - 0.7\MyKeyLen}  @{}p{0.3\linewidth-0.3\MyKeyLen} %
+                @{}p{\the\MyKeyLen}@{}}
+    \verb!\prod! & $\prod$ &  pr \nl
+    \ct \verb!\prec! & $\prec$ &   \nl
+    \ct \verb!\preceq! & $\preceq$ &   \nl
+    \ct \verb!\preccurlyeq! & $\preccurlyeq$ &   \nlt
+\end{tabular}
+
+\begin{tabular}{@{}p{0.7\linewidth - 0.7\MyKeyLen}  @{}p{0.3\linewidth-0.3\MyKeyLen} %
+                @{}p{\the\MyKeyLen}@{}}
+    \verb!\leftarrow! & $\leftarrow$ & lar \nl
+    \ct \verb!\longleftarrow! & $\longleftarrow$ &  \nl
+    \verb!\Leftarrow! & $\Leftarrow$ & Lar \nl
+    \ct \verb!\Longleftarrow! & $\Longleftarrow$ &  \nl
+    \verb!\rightarrow! & $\rightarrow$ & rar \nl
+    \ct \verb!\longrightarrow! & $\longrightarrow$ &  \nl
+    \verb!\Rightarrow! & $\Rightarrow$ & Rar \nl
+    \ct \verb!\Longrightarrow! & $\Longrightarrow$ &  \nl
+\end{tabular}
+\begin{tabular}{@{}p{0.7\linewidth - 0.7\MyKeyLen}  @{}p{0.3\linewidth-0.3\MyKeyLen} %
+                @{}p{\the\MyKeyLen}@{}}
+    \verb!\leftrightarrow! & $\leftrightarrow$ & lr \nl
+    \verb!\Leftrightarrow! & $\Leftrightarrow$ & iif \nl
+    \verb!\Leftrightarrow! & $\Leftrightarrow$ & Lr \nl
+    \ct \verb!\Longleftrightarrow! & $\Longleftrightarrow$ &  \nl
+    \verb!\uparrow! & $\uparrow$ & up \nl
+    \verb!\downarrow! & $\downarrow$ & do \nlt
+\end{tabular}
+
+\begin{tabular}{@{}p{0.7\linewidth - 0.7\MyKeyLen}  @{}p{0.3\linewidth-0.3\MyKeyLen} %
+                @{}p{\the\MyKeyLen}@{}}
+    \verb!\mathit! & $\mathit{C F N R}$ & it \nl
+    \verb!\mathbf! & $\mathbf{C F N R}$ & bf \nl
+    \verb!\mathbb! & $\mathbb{C F N R}$ & bb \nl
+    \verb!\mathrm! & $\mathrm{C F N R}$ & rm \nl
+    \verb!\mathsf! & $\mathsf{C F N R}$ & sf \nl
+    \verb!\mathcal! & \multirow{2}{*}{$\mathcal{C F N R}$} & cal \nl
+    \verb!\mathcal{}! &   & \verb!\mathcal! \nlt
+\end{tabular}
+
+\begin{tabular}{@{}p{0.7\linewidth - 0.7\MyKeyLen}  @{}p{0.3\linewidth-0.3\MyKeyLen} %
+                @{}p{\the\MyKeyLen}@{}}
+    \verb!\left( \right)! & $\left(  \dots \right) $ & lp \nl
+    \verb!\left[ \right]! & $\left[  \dots \right] $ & lb \nl
+    \verb!\left{ \right}! & $\left\{ \dots \right\}$ & lbr \nl
+\end{tabular}
+
+\begin{tabular}{@{}p{0.7\linewidth - 0.7\MyKeyLen}  @{}p{0.3\linewidth-0.3\MyKeyLen} %
+                @{}p{\the\MyKeyLen}@{}}
+    \verb!\frac! & \multirow{2}{*}{$\frac{1}{2}$} & fr \nl
+    \verb!\frac{}{}! &  & fra \nl
+    \verb!\stack! & $\stackrel{1}{2}$ & stack \nlt
+\end{tabular}
+
+\subsection{Beamer}
+\begin{tabular}{@{}p{\linewidth-\the\MyKeyLen} @{}p{\the\MyKeyLen}@{}}
+    \verb!\uncover<+->{}! & uncover \nl
+    \verb!\visible<+->{}! & visible \nl
+    \verb!\only<+->{}! & only \nl
+\end{tabular}
+
+\section{Recommended Packages}
+\hid
+{\bf Package Control:} The package manager used to 
+install and organize Sublime Text packages. \nl
+\hid
+{\bf Vintage Mode:} Vintage is a vi mode package for Sublime Text 2. It allows 
+you to combine vi's command mode with Sublime Text's features, including multiple selections.\nl
+\hid
+{\bf LaTeXTools:} A \LaTeX package for Sublime that implements build commands, 
+inverse/forward search, reference and citation autocompletion, as well as many syntax 
+autocompletion/snippets.\nl
+\hid
+{\bf Jedi:} 
+Implements Python autocompletion/IDE features through the Jedi library. 
+\nl
+\hid
+{\bf SublimeLinter/SublimeLinter-pep8:} 
+Checks Python code for compliance with PEP8 and marks any errors/warnings. 
+\nl
+\hid
+{\bf AutoPEP8:} 
+Provides commands for automatically fixing many PEP8 errors. 
+\nl
+\hid
+{\bf WordHighlight:} 
+Highlight all instances of a word when double-clicked. 
+\nl
+\hid
+{\bf SideBarEnchancements:} 
+Provides enhancements to the operations on Sidebar of Files and Folders for Sublime Text.
+\nl
+\hid
+{\bf Soda Theme:} 
+A popular theme that changes the look of the Sublime Text window. Includes both a light and 
+dark option. Modified version of the Espresso Tutti Colori and 
+Monokai color schemes are available that interact well with the 
+light and dark themes respectively. 
+\nl
+
+\footnotetext[1]{Custom}
+
+\end{multicols*}
+\end{document}
+% \verb!\sum_{k=1}^n!
