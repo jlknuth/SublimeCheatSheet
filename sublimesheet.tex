@@ -129,6 +129,7 @@
     Goto File & \keys{\cmd+ P} \nl
     Goto Definition/Section & \keys{\cmd+ P} \keys{@} /\\
     & \keys{\cmd+ R} \nl
+    Goto Definition/Section in Project & \keys{\cmd+ \shift + R} \nl
     Goto Line & \keys{\cmd+ P} \keys{:} \nl  
     Move Line Up/Down & \keys{\ctrl + \cmd + \arrowkeyup}/\keys{\arrowkeydown} \nl  
     Join Lines & \keys{\cmd + J} \nl
@@ -201,12 +202,15 @@ you should now be in command mode with multiple cursors
     Jump to Top of Screen & \keys{H} \nl
     Jump to Middle of Screen & \keys{M} \nl
     Jump to Bottom of Screen & \keys{L} \nl
+    Jump to Last Change\cst & \keys{` .} \nl
+    Jump to Back One Change\cst & \keys{g ;} \nl
+    Jump to Forward One Change\cst & \keys{g ,} \nl
 \end{tabular}
 
 \subsection{Errors}
 \begin{tabular}{@{}p{\linewidth-\the\MyKeyLen} @{}p{\the\MyKeyLen}@{}}
-    Jump to Next Spelling Error & \keys{] s} \nl
-    Jump to Previous Spelling Error & \keys{[ s} \nl
+    Jump to Next Spelling Error\cst & \keys{] s} \nl
+    Jump to Previous Spelling Error\cst & \keys{[ s} \nl
     Jump to Next Linter Error\cst & \keys{] e} \nl
     Jump to Previous Linter Error\cst & \keys{[ e} \nl
 \end{tabular}
@@ -512,10 +516,13 @@ Provides enhancements to the operations on Sidebar of Files and Folders for Subl
 \hid
 {\bf Soda Theme:} 
 A popular theme that changes the look of the Sublime Text window. Includes both a light and 
-dark option. Modified version of the Espresso Tutti Colori and 
-Monokai color schemes are available that interact well with the 
-light and dark themes respectively. 
+dark option. 
+% Modified version of the Espresso Tutti Colori and 
+% Monokai color schemes are available that interact well with the 
+% light and dark themes respectively. 
 \nl
+\hid
+{\bf Google Spell Check:} Use Google for spell check.
 
 \footnotetext[1]{Custom Commands}
 
